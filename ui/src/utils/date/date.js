@@ -997,7 +997,9 @@ export function daysInMonth(date, utc) {
 }
 
 function getOrdinal(n) {
-  if (n >= 11 && n <= 13) {
+  const lastTwoDigits = n % 100
+
+  if (lastTwoDigits >= 11 && lastTwoDigits <= 13) {
     return `${n}th`
   }
   switch (n % 10) {
