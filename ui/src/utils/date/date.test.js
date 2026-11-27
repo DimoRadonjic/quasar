@@ -963,6 +963,21 @@ describe('[date API]', () => {
         expect(date.formatDate(value, 'GG')).toBe(expectedGG)
       })
 
+      test.each([
+        [new Date(2024, 0, 1), '1st'],
+        [new Date(2024, 0, 11), '11th'],
+        [new Date(2024, 0, 21), '21st'],
+        [new Date(2024, 3, 10), '101st'],
+        [new Date(2024, 3, 20), '111th'],
+        [new Date(2024, 3, 21), '112th'],
+        [new Date(2024, 3, 22), '113th'],
+        [new Date(2024, 6, 29), '211th'],
+        [new Date(2024, 10, 6), '311th'],
+        [new Date(2024, 11, 31), '366th']
+      ])('formats the DDDo ordinal of %o', (value, expected) => {
+        expect(date.formatDate(value, 'DDDo')).toBe(expected)
+      })
+
       test('applies a forced year to the ISO week year tokens', () => {
         const value = new Date(2022, 0, 1)
 
